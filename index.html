@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        LovieOS Daily | your life, according to plan.
+    </title>
+
+    <meta
+        name="description"
+        content="LovieOS Daily is a soft, feminine life dashboard for planning your day, tracking habits, managing tasks, and keeping your life organized."
+    >
+
+    <!-- PWA -->
+
+    <meta
+        name="theme-color"
+        content="#c96f91"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="LovieOS"
+    >
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="icons/apple-touch-icon.png"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="icons/icon-192.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                ♡
+            </div>
+
+            <div>
+                <h1>LovieOS Daily</h1>
+
+                <p>
+                    your life, according to plan.
+                </p>
+            </div>
+
+        </div>
+
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
+
+            <button
+                class="nav-button active"
+                type="button"
+                data-page="today"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Today</span>
+            </button>
+
+            <button
+                class="nav-button"
+                type="button"
+                data-page="tasks"
+            >
+                <span class="nav-icon">✓</span>
+                <span>Tasks</span>
+            </button>
+
+            <button
+                class="nav-button"
+                type="button"
+                data-page="habits"
+            >
+                <span class="nav-icon">✿</span>
+                <span>Habits</span>
+            </button>
+
+            <button
+                class="nav-button"
+                type="button"
+                data-page="notes"
+            >
+                <span class="nav-icon">✎</span>
+                <span>Notes</span>
+            </button>
+
+            <button
+                class="nav-button"
+                type="button"
+                data-page="settings"
+            >
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+                daily reminder
+            </p>
+
+            <strong>
+                you do not have to do everything today ♡
+            </strong>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-copy">
+
+                <p
+                    class="eyebrow"
+                    id="currentDate"
+                >
+                    Sunday, October 11
+                </p>
+
+                <h2 id="greeting">
+                    good morning, lovie ♡
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <div class="day-status">
+
+                    <span class="status-dot"></span>
+
+                    <span id="plannerModeDisplay">
+                        soft productivity mode
+                    </span>
+
+                </div>
+
+                <button
+                    class="profile-button"
+                    type="button"
+                    aria-label="Profile"
+                    id="profileButton"
+                >
+                    L
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- TODAY -->
+
+        <section
+            class="page active"
+            id="today-page"
+        >
+
+            <div class="dashboard-grid">
+
+                <section class="card hero-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                TODAY
+                            </p>
+
+                            <h3>
+                                make today feel manageable.
+                            </h3>
+
+                        </div>
+
+                        <span class="decorative-heart">
+                            ♡
+                        </span>
+
+                    </div>
+
+
+                    <p class="hero-copy">
+                        Focus on what matters, leave room
+                        for softness, and let the rest wait
+                        until tomorrow.
+                    </p>
+
+
+                    <div class="progress-area">
+
+                        <div class="progress-copy">
+
+                            <span>
+                                daily progress
+                            </span>
+
+                            <strong id="progressText">
+                                0 of 0 complete
+                            </strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                id="dailyProgress"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="card priorities-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                TOP THREE
+                            </p>
+
+                            <h3>
+                                today's priorities
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="mini-badge priority-add-button"
+                            type="button"
+                            data-go-to="tasks"
+                            aria-label="Add a task"
+                        >
+                            ＋
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="priority-list"
+                        id="todayPriorities"
+                    >
+
+                        <div class="dashboard-empty-state">
+
+                            <span>
+                                ♡
+                            </span>
+
+                            <p>
+                                add some tasks and your
+                                priorities will show up here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- REAL DAILY SCHEDULE -->
+
+                <section class="card schedule-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                SCHEDULE
+                            </p>
+
+                            <h3>
+                                little plans for today
+                            </h3>
+
+                            <p
+                                class="schedule-count"
+                                id="scheduleCount"
+                            >
+                                nothing planned yet
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="icon-button"
+                            id="addScheduleButton"
+                            type="button"
+                            aria-label="Add schedule item"
+                        >
+                            ＋
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="schedule-list"
+                        id="scheduleList"
+                    ></div>
+
+
+                    <div
+                        class="schedule-empty-state"
+                        id="scheduleEmptyState"
+                    >
+
+                        <div class="schedule-empty-icon">
+                            ☀
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                your day is wide open
+                            </strong>
+
+                            <p>
+                                add a little plan when you're ready ♡
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="card mood-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                CHECK IN
+                            </p>
+
+                            <h3>
+                                how are we feeling?
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mood-options">
+
+                        <button
+                            class="mood-button"
+                            type="button"
+                            data-mood="sleepy"
+                        >
+                            <span>😴</span>
+                            <small>sleepy</small>
+                        </button>
+
+                        <button
+                            class="mood-button"
+                            type="button"
+                            data-mood="okay"
+                        >
+                            <span>🙂</span>
+                            <small>okay</small>
+                        </button>
+
+                        <button
+                            class="mood-button"
+                            type="button"
+                            data-mood="cute"
+                        >
+                            <span>🥰</span>
+                            <small>cute</small>
+                        </button>
+
+                        <button
+                            class="mood-button"
+                            type="button"
+                            data-mood="focused"
+                        >
+                            <span>🤓</span>
+                            <small>focused</small>
+                        </button>
+
+                        <button
+                            class="mood-button"
+                            type="button"
+                            data-mood="over-it"
+                        >
+                            <span>🙄</span>
+                            <small>over it</small>
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        class="mood-result"
+                        id="moodResult"
+                    >
+                        no mood selected yet ♡
+                    </p>
+
+                </section>
+
+
+                <section class="card habit-preview-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                HABITS
+                            </p>
+
+                            <h3>
+                                soft little wins
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="text-button"
+                            type="button"
+                            data-go-to="habits"
+                        >
+                            view all
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="habit-preview-list"
+                        id="habitPreviewList"
+                    >
+
+                        <div class="dashboard-empty-state">
+
+                            <span>
+                                ✿
+                            </span>
+
+                            <p>
+                                your habits will show up here
+                                once you add them.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="card note-preview-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                BRAIN DUMP
+                            </p>
+
+                            <h3>
+                                anything on your mind?
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <textarea
+                        class="quick-note"
+                        id="quickNote"
+                        placeholder="type whatever is floating around in that pretty little head..."
+                    ></textarea>
+
+
+                    <div class="note-save-status">
+
+                        <span id="quickNoteStatus">
+                            saved automatically ♡
+                        </span>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASKS -->
+
+        <section
+            class="page"
+            id="tasks-page"
+        >
+
+            <section class="page-intro">
+
+                <p class="card-kicker">
+                    TASKS
+                </p>
+
+                <h3>
+                    pretty productive ♡
+                </h3>
+
+                <p>
+                    Give everything a place so your brain
+                    does not have to hold it all.
+                </p>
+
+            </section>
+
+
+            <div class="task-layout">
+
+                <section class="card task-form-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                NEW TASK
+                            </p>
+
+                            <h3>
+                                add something to the list
+                            </h3>
+
+                        </div>
+
+                        <span class="mini-badge">
+                            ♡
+                        </span>
+
+                    </div>
+
+
+                    <form
+                        class="task-form"
+                        id="taskForm"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="taskTitle">
+                                task
+                            </label>
+
+                            <input
+                                type="text"
+                                id="taskTitle"
+                                name="taskTitle"
+                                maxlength="120"
+                                placeholder="what needs to get done?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="task-form-row">
+
+                            <div class="form-group">
+
+                                <label for="taskDate">
+                                    due date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="taskDate"
+                                    name="taskDate"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="taskPriority">
+                                    priority
+                                </label>
+
+                                <select
+                                    id="taskPriority"
+                                    name="taskPriority"
+                                >
+                                    <option value="low">
+                                        low
+                                    </option>
+
+                                    <option
+                                        value="medium"
+                                        selected
+                                    >
+                                        medium
+                                    </option>
+
+                                    <option value="high">
+                                        high
+                                    </option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="taskCategory">
+                                category
+                            </label>
+
+                            <select
+                                id="taskCategory"
+                                name="taskCategory"
+                            >
+                                <option value="personal">
+                                    personal
+                                </option>
+
+                                <option value="school">
+                                    school
+                                </option>
+
+                                <option value="work">
+                                    work
+                                </option>
+
+                                <option value="self-care">
+                                    self-care
+                                </option>
+
+                                <option value="creative">
+                                    creative
+                                </option>
+
+                                <option value="errands">
+                                    errands
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            type="submit"
+                        >
+                            <span>＋</span>
+                            add task
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <section class="card task-summary-card">
+
+                    <div>
+
+                        <p class="card-kicker">
+                            OVERVIEW
+                        </p>
+
+                        <h3>
+                            today's little list
+                        </h3>
+
+                    </div>
+
+
+                    <div class="task-stat-grid">
+
+                        <div class="task-stat">
+
+                            <strong id="taskTotalCount">
+                                0
+                            </strong>
+
+                            <span>
+                                total
+                            </span>
+
+                        </div>
+
+
+                        <div class="task-stat">
+
+                            <strong id="taskOpenCount">
+                                0
+                            </strong>
+
+                            <span>
+                                open
+                            </span>
+
+                        </div>
+
+
+                        <div class="task-stat">
+
+                            <strong id="taskCompleteCount">
+                                0
+                            </strong>
+
+                            <span>
+                                complete
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <section class="task-toolbar">
+
+                <div
+                    class="task-filter-group"
+                    aria-label="Task filters"
+                >
+
+                    <button
+                        class="task-filter active"
+                        type="button"
+                        data-filter="all"
+                    >
+                        all
+                    </button>
+
+                    <button
+                        class="task-filter"
+                        type="button"
+                        data-filter="today"
+                    >
+                        today
+                    </button>
+
+                    <button
+                        class="task-filter"
+                        type="button"
+                        data-filter="upcoming"
+                    >
+                        upcoming
+                    </button>
+
+                    <button
+                        class="task-filter"
+                        type="button"
+                        data-filter="completed"
+                    >
+                        completed
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="clear-completed-button"
+                    id="clearCompletedButton"
+                    type="button"
+                >
+                    clear completed
+                </button>
+
+            </section>
+
+
+            <section class="card task-list-card">
+
+                <div
+                    class="task-list"
+                    id="taskList"
+                ></div>
+
+
+                <div
+                    class="task-empty-state"
+                    id="taskEmptyState"
+                >
+
+                    <div class="task-empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        nothing here yet
+                    </h3>
+
+                    <p>
+                        Add your first task and LovieOS
+                        will keep it right here for you ♡
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- HABITS -->
+
+        <section
+            class="page"
+            id="habits-page"
+        >
+
+            <section class="page-intro">
+
+                <p class="card-kicker">
+                    HABITS
+                </p>
+
+                <h3>
+                    romanticize the routine.
+                </h3>
+
+                <p>
+                    Tiny things count too.
+                </p>
+
+            </section>
+
+
+            <div class="habit-layout">
+
+                <section class="card habit-form-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                NEW HABIT
+                            </p>
+
+                            <h3>
+                                add a little ritual
+                            </h3>
+
+                        </div>
+
+                        <span class="mini-badge">
+                            ✿
+                        </span>
+
+                    </div>
+
+
+                    <form
+                        class="habit-form"
+                        id="habitForm"
+                    >
+
+                        <div class="habit-form-row">
+
+                            <div class="form-group habit-emoji-group">
+
+                                <label for="habitEmoji">
+                                    emoji
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="habitEmoji"
+                                    name="habitEmoji"
+                                    maxlength="4"
+                                    value="♡"
+                                    aria-label="Habit emoji"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="habitName">
+                                    habit
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="habitName"
+                                    name="habitName"
+                                    maxlength="80"
+                                    placeholder="drink water, skincare, study..."
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="habitCategory">
+                                category
+                            </label>
+
+                            <select
+                                id="habitCategory"
+                                name="habitCategory"
+                            >
+                                <option value="wellness">
+                                    wellness
+                                </option>
+
+                                <option value="beauty">
+                                    beauty
+                                </option>
+
+                                <option value="school">
+                                    school
+                                </option>
+
+                                <option value="fitness">
+                                    fitness
+                                </option>
+
+                                <option value="self-care">
+                                    self-care
+                                </option>
+
+                                <option value="personal">
+                                    personal
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            type="submit"
+                        >
+                            <span>＋</span>
+                            add habit
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <section class="card habit-summary-card">
+
+                    <div>
+
+                        <p class="card-kicker">
+                            TODAY
+                        </p>
+
+                        <h3>
+                            soft little wins
+                        </h3>
+
+                    </div>
+
+
+                    <div class="task-stat-grid">
+
+                        <div class="task-stat">
+
+                            <strong id="habitTotalCount">
+                                0
+                            </strong>
+
+                            <span>
+                                habits
+                            </span>
+
+                        </div>
+
+
+                        <div class="task-stat">
+
+                            <strong id="habitDoneCount">
+                                0
+                            </strong>
+
+                            <span>
+                                done
+                            </span>
+
+                        </div>
+
+
+                        <div class="task-stat">
+
+                            <strong id="habitBestStreak">
+                                0
+                            </strong>
+
+                            <span>
+                                best streak
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <section class="habit-section-heading">
+
+                <div>
+
+                    <p class="card-kicker">
+                        THIS WEEK
+                    </p>
+
+                    <h3>
+                        your routine, one day at a time
+                    </h3>
+
+                </div>
+
+            </section>
+
+
+            <section
+                class="habit-list"
+                id="habitList"
+            ></section>
+
+
+            <section
+                class="card task-empty-state habit-empty-state"
+                id="habitEmptyState"
+            >
+
+                <div class="task-empty-icon">
+                    ✿
+                </div>
+
+                <h3>
+                    no habits yet
+                </h3>
+
+                <p>
+                    Add something small you want to keep
+                    showing up for, and we'll track it here ♡
+                </p>
+
+            </section>
+
+        </section>
+
+
+        <!-- NOTES -->
+
+        <section
+            class="page"
+            id="notes-page"
+        >
+
+            <section class="page-intro">
+
+                <p class="card-kicker">
+                    NOTES
+                </p>
+
+                <h3>
+                    a place for every little thought.
+                </h3>
+
+                <p>
+                    Lists, ideas, reminders, brain dumps,
+                    and everything else.
+                </p>
+
+            </section>
+
+
+            <section class="card notes-workspace">
+
+                <div class="notes-heading">
+
+                    <label for="mainNote">
+                        current note
+                    </label>
+
+                    <span id="mainNoteStatus">
+                        saved automatically ♡
+                    </span>
+
+                </div>
+
+
+                <textarea
+                    id="mainNote"
+                    placeholder="dear diary... or grocery list... whatever works ♡"
+                ></textarea>
+
+            </section>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+
+        <section
+            class="page"
+            id="settings-page"
+        >
+
+            <section class="page-intro">
+
+                <p class="card-kicker">
+                    SETTINGS
+                </p>
+
+                <h3>
+                    make her yours.
+                </h3>
+
+                <p>
+                    Change the way LovieOS Daily looks and talks to you.
+                </p>
+
+            </section>
+
+
+            <div class="settings-layout">
+
+                <section class="card settings-panel">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                PROFILE
+                            </p>
+
+                            <h3>
+                                your planner, your name
+                            </h3>
+
+                        </div>
+
+                        <span class="mini-badge">
+                            ♡
+                        </span>
+
+                    </div>
+
+
+                    <form
+                        class="settings-form"
+                        id="profileSettingsForm"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="displayNameInput">
+                                display name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="displayNameInput"
+                                maxlength="30"
+                                placeholder="lovie"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="plannerModeInput">
+                                planner mode
+                            </label>
+
+                            <input
+                                type="text"
+                                id="plannerModeInput"
+                                maxlength="40"
+                                placeholder="soft productivity mode"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="greetingStyleSelect">
+                                greeting style
+                            </label>
+
+                            <select id="greetingStyleSelect">
+
+                                <option value="automatic">
+                                    automatic
+                                </option>
+
+                                <option value="sweet">
+                                    extra sweet
+                                </option>
+
+                                <option value="simple">
+                                    simple
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            type="submit"
+                        >
+                            save profile settings
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <section class="card settings-panel">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="card-kicker">
+                                CALENDAR
+                            </p>
+
+                            <h3>
+                                how your week starts
+                            </h3>
+
+                        </div>
+
+                        <span class="mini-badge">
+                            ☀
+                        </span>
+
+                    </div>
+
+
+                    <div class="week-start-options">
+
+                        <label class="setting-choice">
+
+                            <input
+                                type="radio"
+                                name="weekStart"
+                                value="monday"
+                                checked
+                            >
+
+                            <span class="setting-choice-box">
+
+                                <strong>
+                                    Monday
+                                </strong>
+
+                                <small>
+                                    Monday → Sunday
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="setting-choice">
+
+                            <input
+                                type="radio"
+                                name="weekStart"
+                                value="sunday"
+                            >
+
+                            <span class="setting-choice-box">
+
+                                <strong>
+                                    Sunday
+                                </strong>
+
+                                <small>
+                                    Sunday → Saturday
+                                </small>
+
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <section class="settings-theme-section">
+
+                <div class="settings-section-heading">
+
+                    <div>
+
+                        <p class="card-kicker">
+                            THEMES
+                        </p>
+
+                        <h3>
+                            pick today's personality
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="theme-grid">
+
+                    <button
+                        class="theme-card active"
+                        type="button"
+                        data-theme="pink-dream"
+                    >
+
+                        <div class="theme-preview pink-dream-preview">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="theme-card-copy">
+
+                            <strong>
+                                Pink Dream
+                            </strong>
+
+                            <span>
+                                soft pink + cream
+                            </span>
+
+                        </div>
+
+                        <span class="theme-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="theme-card"
+                        type="button"
+                        data-theme="cheetah-girl"
+                    >
+
+                        <div class="theme-preview cheetah-preview">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="theme-card-copy">
+
+                            <strong>
+                                Cheetah Girl
+                            </strong>
+
+                            <span>
+                                blush + caramel + cocoa
+                            </span>
+
+                        </div>
+
+                        <span class="theme-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="theme-card"
+                        type="button"
+                        data-theme="night-routine"
+                    >
+
+                        <div class="theme-preview night-preview">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="theme-card-copy">
+
+                            <strong>
+                                Night Routine
+                            </strong>
+
+                            <span>
+                                plum + mauve + midnight
+                            </span>
+
+                        </div>
+
+                        <span class="theme-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <section class="card settings-status-card">
+
+                <div>
+
+                    <p class="card-kicker">
+                        CURRENT SETUP
+                    </p>
+
+                    <h3 id="currentThemeName">
+                        Pink Dream
+                    </h3>
+
+                    <p id="currentSettingsSummary">
+                        automatic greeting · Monday start
+                    </p>
+
+                </div>
+
+                <span class="settings-status-heart">
+                    ♡
+                </span>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- MOBILE NAV -->
+
+    <nav
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <button
+            class="mobile-nav-button active"
+            type="button"
+            data-page="today"
+        >
+            <span>⌂</span>
+            <small>Today</small>
+        </button>
+
+        <button
+            class="mobile-nav-button"
+            type="button"
+            data-page="tasks"
+        >
+            <span>✓</span>
+            <small>Tasks</small>
+        </button>
+
+        <button
+            class="mobile-nav-button"
+            type="button"
+            data-page="habits"
+        >
+            <span>✿</span>
+            <small>Habits</small>
+        </button>
+
+        <button
+            class="mobile-nav-button"
+            type="button"
+            data-page="notes"
+        >
+            <span>✎</span>
+            <small>Notes</small>
+        </button>
+
+        <button
+            class="mobile-nav-button"
+            type="button"
+            data-page="settings"
+        >
+            <span>⚙</span>
+            <small>Settings</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<!-- DAILY PLANNER MODAL -->
+
+<div
+    class="schedule-modal"
+    id="scheduleModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="schedule-modal-backdrop"
+        id="scheduleModalBackdrop"
+    ></div>
+
+
+    <section
+        class="schedule-modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="scheduleFormTitle"
+    >
+
+        <div class="schedule-modal-header">
+
+            <div>
+
+                <p class="card-kicker">
+                    DAILY PLANNER
+                </p>
+
+                <h2 id="scheduleFormTitle">
+                    add a little plan
+                </h2>
+
+            </div>
+
+
+            <button
+                class="schedule-modal-close"
+                id="closeScheduleModalButton"
+                type="button"
+                aria-label="Close planner"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            class="schedule-form"
+            id="scheduleForm"
+        >
+
+            <input
+                type="hidden"
+                id="scheduleEditId"
+            >
+
+
+            <div class="schedule-form-row">
+
+                <div class="form-group">
+
+                    <label for="scheduleDate">
+                        date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="scheduleDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="scheduleTime">
+                        time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="scheduleTime"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="scheduleTitle">
+                    plan
+                </label>
+
+                <input
+                    type="text"
+                    id="scheduleTitle"
+                    maxlength="100"
+                    placeholder="what's on the agenda?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="scheduleNote">
+                    little note
+                </label>
+
+                <textarea
+                    id="scheduleNote"
+                    maxlength="220"
+                    placeholder="optional details..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="schedule-form-actions">
+
+                <button
+                    class="secondary-button"
+                    id="cancelScheduleButton"
+                    type="button"
+                >
+                    cancel
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    id="saveScheduleButton"
+                    type="submit"
+                >
+                    <span>＋</span>
+                    save plan
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
